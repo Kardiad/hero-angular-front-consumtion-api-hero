@@ -1,0 +1,126 @@
+<h1 *ngIf="!hero; else nohero">
+    Agregar héroe
+</h1>
+
+<ng-template #nohero>
+    <h1>
+        Editar héroe
+        <small>{{hero?.nombre}}</small>
+    </h1>
+</ng-template>
+
+<mat-divider class="mb-2"></mat-divider>
+
+<div class="grid">
+    <div class="col-12 sm:col-6">
+        <mat-card>
+            <mat-card-content>
+                <form class="grid" [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <mat-form-field class="col-12 sm:col-6">
+                        <mat-label>
+                            Super héroe
+                        </mat-label>
+                        <input 
+                            matInput
+                            type="text"
+                            required
+                            [value]="hero?.nombre"
+                            formControlName="nombre"
+                            >
+                    </mat-form-field>
+                    <mat-form-field class="col-12 sm:col-6">
+                        <mat-label>
+                            Alter ego
+                        </mat-label>
+                        <input 
+                            matInput
+                            type="text"
+                            required
+                            [value]="hero?.alterego"
+                            formControlName="alterego"
+                            >
+                    </mat-form-field>
+                    <mat-form-field class="col-12">
+                        <mat-label>
+                           Primera aparición
+                        </mat-label>
+                        <input 
+                            matInput
+                            type="text"
+                            required
+                            [value]="hero?.aparicion"
+                            formControlName="aparicion"
+                            >
+                    </mat-form-field>
+                    <mat-form-field class="col-12">
+                        <mat-label>
+                            Código
+                        </mat-label>
+                        <input 
+                            matInput
+                            type="text"
+                            required
+                            [value]="hero?.codigo"
+                            formControlName="codigo"
+                            >
+                    </mat-form-field>
+                    <mat-form-field class="col-12">
+                        <mat-label>
+                            Editorial
+                        </mat-label>
+                        <input 
+                            matInput
+                            type="text"
+                            required
+                            [value]="hero?.editorial"
+                            formControlName="editorial"
+                            >
+                    </mat-form-field>
+                    <label for="img">Imagen</label>
+                    <input id = "img"
+                           class="form-control" 
+                           type="file" 
+                           required
+                           #img
+                           formControlName="img"
+                           (change)="onChange(img)">
+                    <!-- <mat-form-field class="col-12">
+                        <mat-label>
+                            Imagen
+                        </mat-label>
+                        <input 
+                            matInput
+                            type="text"
+                            required
+                            [value]="hero?.img"
+                            formControlName="img"
+                            >
+                    </mat-form-field> -->
+                </form>
+                <div class="flex justify-content-between">
+                    <button 
+                        mat-flat-button
+                        color='warn'
+                        *ngIf="edit"
+                    >
+                    Borrar
+                    </button>
+                    <div class="spacer"></div>
+                    <button 
+                        mat-flat-button
+                        color='primary'
+                        (click)="onSubmit()"
+                    >
+                    <mat-icon>save</mat-icon>
+                    Guardar
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-12 sm:col-6">
+        <mat-card>
+            <img [src]=" hero?.img | img" alt="Imagen del héroe">
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<ng-template #loading>
+    <mat-grid-list cols="1">
+        <mat-grid-tile>
+            <mat-spinner>
+
+            </mat-spinner>
+        </mat-grid-tile>
+    </mat-grid-list>
+</ng-template>
+
+<div *ngIf="hero; else loading">
+    <mat-card class="grid flex-row">
+        <mat-card-header class="col-12">
+            <mat-card-title>Información</mat-card-title>
+            <mat-card-subtitle>{{hero.nombre}}</mat-card-subtitle>
+        </mat-card-header>
+        <img class="mt-5 col-12 sm:col-6" src="{{hero.img | img}}" alt="{{hero.nombre}}">
+        <mat-card-content class="col-12 sm:col-6 sm:mt-5">
+            <h2>Otros datos</h2>
+            <mat-list>
+                <mat-list-item class="flex-column"><b>Primera aparición:</b> {{hero.aparicion}}</mat-list-item>
+                <mat-list-item class="flex-column"><b>Código de héroe:</b> {{hero.codigo}}</mat-list-item>
+            </mat-list>
+            <button 
+                mat-button
+                color="warn"
+                (click)="goBack()"
+            >
+                Regresar
+            </button>
+        </mat-card-content>
+    </mat-card>
+</div>
